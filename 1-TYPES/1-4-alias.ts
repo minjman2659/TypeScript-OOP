@@ -3,15 +3,16 @@
    * Type Aliases
    */
   type Text = string;
-  const name: Text = 'ellie';
-  const address: Text = 'korea';
+  const name: Text = 'kim';
+
   type Num = number;
+
   type Student = {
     name: string;
     age: number;
   };
   const student: Student = {
-    name: 'ellie',
+    name: 'kim',
     age: 12,
   };
 
@@ -19,10 +20,11 @@
    * String Literal Types
    */
   type Name = 'name';
-  let ellieName: Name;
-  ellieName = 'name';
+  let kim: Name;
+  kim = 'name';
   type JSON = 'json';
   const json: JSON = 'json';
 
   type Boal = true;
+  const isCat: Boal = true;
 }
