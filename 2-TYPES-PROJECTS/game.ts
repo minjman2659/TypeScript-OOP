@@ -19,6 +19,8 @@ function move(direction: Direction): void {
     case 'right':
       position.x++;
       return;
+    default:
+      throw new Error(`unknown direction: ${direction}`);
   }
 }
 
