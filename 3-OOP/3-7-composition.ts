@@ -171,4 +171,5 @@
   const coldLatteMachine = new CoffeeMachine(12, coldMilkFrother, noSugar);
 
   const sweetLatteMachine = new CoffeeMachine(12, cheapMilkFrother, candySugar);
+  console.log(sweetLatteMachine.makeCoffee(1));
 }
