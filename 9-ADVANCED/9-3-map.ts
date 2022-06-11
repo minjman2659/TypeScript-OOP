@@ -1,9 +1,4 @@
 {
-  type Video = {
-    title: string;
-    author: string;
-  };
-
   //* T 안에 들어오는 type의 key들을 optional로 바꿔주는 map type
   type Optional<T> = {
     [P in keyof T]?: T[P]; // type 안에서 []을 사용하는 것은 for...in 과 동일
@@ -25,6 +20,11 @@
     [P in keyof T]: Proxy<T[P]>;
   };
 
+  type Video = {
+    title: string;
+    author: string;
+  };
+
   // Video type의 키들을 optional로 변환시키는 방법
   type VideoOptional = Optional<Video>;
   const videoOp: VideoOptional = {
@@ -43,7 +43,7 @@
     title: 'title',
     author: 'author',
   };
-  videoRo.title = 'change!';
+  // videoRo.title = 'change!';
 
   const obj2: Nullable<Video> = {
     title: null,
