@@ -12,24 +12,18 @@
 
   class NetworkClient {
     tryConnect(): ResultState {
-      try {
-        console.log('success');
-        return { result: 'success' };
-      } catch (err) {
-        console.log(err);
-        return {
-          result: 'fail',
-          reason: 'offline',
-        };
-      }
+      return {
+        result: 'fail',
+        reason: 'down',
+      };
     }
   }
 
   class UserService {
     constructor(private client: NetworkClient) {}
 
-    login() {
-      this.client.tryConnect();
+    login(): ResultState {
+      return this.client.tryConnect();
       // login ...
     }
   }
@@ -40,9 +34,18 @@
 
     run() {
       try {
-        this.userService.login();
+        const state = this.userService.login();
+
+        switch (state.result) {
+          case 'success':
+            console.log('로그인 성공!');
+            break;
+          case 'fail':
+            console.log(`로그인 실패: ${state.reason}`);
+            break;
+        }
       } catch (err) {
-        console.log(`run error`);
+        console.log(err);
       }
     }
   }
