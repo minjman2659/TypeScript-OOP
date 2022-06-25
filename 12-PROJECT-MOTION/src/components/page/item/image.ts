@@ -4,7 +4,7 @@ export class ImageComponent extends BaseComponent<HTMLElement> {
   constructor(title: string, url: string) {
     super(`<section class="image">
             <div class="image__holder"><img class="image__thumbnail" /></div>
-            <h2 class="image__title"></h2>
+            <h2 class="page-item__title image__title"></h2>
            </section>`);
 
     //* innerHTML에 자바스크립트 코드를 바로 넣는 것은 위험하다
