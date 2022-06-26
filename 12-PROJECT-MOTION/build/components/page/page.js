@@ -1,5 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { BaseComponent } from './../component.js';
-export class PageItemComponent extends BaseComponent {
+import { EnableDragging, EnableDrop, EnableHover, } from '../../decorators/draggable.js';
+let PageItemComponent = class PageItemComponent extends BaseComponent {
     constructor() {
         super(`<li draggable="true" class="page-item">
             <section class="page-item__body"></section>
@@ -11,18 +18,6 @@ export class PageItemComponent extends BaseComponent {
         closeBtn.onclick = () => {
             this.closeListener && this.closeListener();
         };
-        this.element.addEventListener('dragstart', (event) => {
-            this.onDragStart(event);
-        });
-        this.element.addEventListener('dragend', (event) => {
-            this.onDragEnd(event);
-        });
-        this.element.addEventListener('dragenter', (event) => {
-            this.onDragEnter(event);
-        });
-        this.element.addEventListener('dragleave', (event) => {
-            this.onDragLeave(event);
-        });
     }
     onDragStart(_) {
         this.notifyDragObservers('start');
@@ -67,24 +62,20 @@ export class PageItemComponent extends BaseComponent {
     getBoundingRect() {
         return this.element.getBoundingClientRect();
     }
-}
-export class PageComponent extends BaseComponent {
+};
+PageItemComponent = __decorate([
+    EnableDragging,
+    EnableHover
+], PageItemComponent);
+export { PageItemComponent };
+let PageComponent = class PageComponent extends BaseComponent {
     constructor(pageItemConstructor) {
         super(`<ul class="page"></ul>`);
         this.pageItemConstructor = pageItemConstructor;
         this.children = new Set();
-        this.element.addEventListener('dragover', (event) => {
-            this.onDragOver(event);
-        });
-        this.element.addEventListener('drop', (event) => {
-            this.onDrop(event);
-        });
     }
-    onDragOver(event) {
-        event.preventDefault();
-    }
+    onDragOver(_) { }
     onDrop(event) {
-        event.preventDefault();
         if (!this.dropTarget) {
             return;
         }
@@ -131,4 +122,8 @@ export class PageComponent extends BaseComponent {
             section.muteChildren(state);
         });
     }
-}
+};
+PageComponent = __decorate([
+    EnableDrop
+], PageComponent);
+export { PageComponent };

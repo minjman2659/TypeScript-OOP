@@ -16,4 +16,7 @@ export class BaseComponent {
     attach(component, position) {
         component.attachTo(this.element, position);
     }
+    registerEventListener(type, listener) {
+        this.element.addEventListener(type, listener);
+    }
 }
