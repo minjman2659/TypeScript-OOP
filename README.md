@@ -1,6 +1,7 @@
 # TypeScript
 타입스크립트 &amp; OOP 연습
 
+
 ## Notion 템플릿
 <b>[블로그 링크](https://www.notion.so/minjman2659/TypeScript-55c467a0dc654a6493e5e4e907695136)<b>
 
